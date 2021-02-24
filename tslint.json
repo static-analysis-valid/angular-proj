@@ -8,7 +8,8 @@
       "options": [
         "parameters",
         "statements"
-      ]
+      ],
+      "severity": "warning"
     },
     "array-type": false,
     "arrow-return-shorthand": true,
@@ -25,7 +26,8 @@
     "indent": {
       "options": [
         "spaces"
-      ]
+      ],
+      "severity": "warning"
     },
     "max-classes-per-file": false,
     "max-line-length": [
@@ -60,19 +62,30 @@
     "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
     "no-var-requires": false,
+    "no-var-keyword": {
+      "severity": "warning"
+    }, 
+    "prefer-const": {
+      "severity": "warning"
+    },
     "object-literal-key-quotes": [
       true,
       "as-needed"
     ],
-    "quotemark": [
-      true,
-      "single"
-    ],
+
+    "quotemark": {
+      "options":  [
+        "single"
+      ], 
+      "severity": "warning"
+    },
     "semicolon": {
       "options": [
         "always"
-      ]
+      ],
+      "severity": "warning"
     },
+
     "space-before-function-paren": {
       "options": {
         "anonymous": "never",
@@ -82,10 +95,12 @@
         "named": "never"
       }
     },
-    "typedef": [
-      true,
-      "call-signature"
-    ],
+    "typedef": {
+      "options": [
+        "call-signature"
+      ], 
+      "severity": "warning"
+    },
     "typedef-whitespace": {
       "options": [
         {
@@ -111,6 +126,9 @@
         "allow-pascal-case"
       ]
     },
+    "no-unused-variable": {
+      "severity": "warning"
+    },
     "whitespace": {
       "options": [
         "check-branch",
@@ -121,6 +139,7 @@
         "check-typecast"
       ]
     },
+    "no-trailing-whitespace": false,
     "component-class-suffix": true,
     "contextual-lifecycle": true,
     "directive-class-suffix": true,
