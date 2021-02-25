@@ -17,7 +17,7 @@ jobs:
           node-version: 14
           
       - name: Runing TSLint
-        run: ng lint 
+        run: npm run lint 
       
       
       
