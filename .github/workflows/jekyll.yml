@@ -11,31 +11,33 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 12
+          
       - name: Install dependency
         run: npm ci   
-      - name: Run Linter 
-        run: npm run lint 
+
+     
+     # TODO: run lint on changed files 
+        
+      - name: Run linter plugin
+        uses: wearerequired/lint-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Enable linters
+          eslint: true
+           # Optional: scan TS
+          eslint_extensions: js,ts
+          # TODO: support rules from tslint
       
       
     
   
 
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build the site in the jekyll/builder container
-      run: |
-        docker run \
-        -v ${{ github.workspace }}:/srv/jekyll -v ${{ github.workspace }}/_site:/srv/jekyll/_site \
-        jekyll/builder:latest /bin/bash -c "chmod 777 /srv/jekyll && jekyll build --future"
-        
-        
-
-
+ 
 
