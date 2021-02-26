@@ -6,6 +6,10 @@
     "parserOptions": {
         "ecmaVersion": 2020,
         "sourceType": "module" // Allows for the use of imports
-
+    },
+    "rules": {
+        // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
+        // "prefer-namespace-keyword": 0, 
+        // "no-namespace": 0
     }
 }
