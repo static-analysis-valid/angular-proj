@@ -13,6 +13,6 @@ export class AppComponent {
     
     console.info('how about that no-console asfd')
     console.log('run linter from "package.json"') 
-
+    console.debug('please work');
   }
 }
