@@ -12,7 +12,7 @@ export class AppComponent {
     this.title = 123; // mismatched typede  
     
     console.info('how about that no-console asfd')
-        console.log('run linter from "package.json"') 
+    console.log('run linter from "package.json"') 
 
   }
 }
