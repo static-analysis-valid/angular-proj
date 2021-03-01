@@ -10,8 +10,6 @@ export class AppComponent {
   constructor() {
     console.log('run linter from "package.json"') 
     this.title = 123; // mismatched typede  
-
-  
     
     console.info('how about that no-console rule')
   }
