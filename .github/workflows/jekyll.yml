@@ -44,7 +44,7 @@ jobs:
       
       - name: TSLint Checking
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
-        run: $(git rev-parse --show-toplevel)/node_modules/.bin/eslint --config ./tslint.json -e "**/*.(js|jsx|css|scss|html|md|json|yml)" ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
+        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p . ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
 
 
 
