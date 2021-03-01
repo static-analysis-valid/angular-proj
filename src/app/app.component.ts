@@ -8,5 +8,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'StaticAnalysis';
   constructor() {
+    console.log('run linter from "package.json"') 
+    this.title = 123; // mismatched typede  
+
+  
+    
+    console.info('how about that no-console rule')
   }
 }
