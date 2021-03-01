@@ -25,7 +25,7 @@ jobs:
         # Set outputs using the command.
         run: |
           echo "ayooo"
-          echo "$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
+          echo "$(git diff --name-only --diff-filter=ACMRT ${{ github.sha }} ${{ github.event.pull_request.base.sha }}  | xargs)"
           echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
           echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
 
