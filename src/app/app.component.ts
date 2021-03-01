@@ -8,5 +8,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'StaticAnalysis';
   constructor() {
+        console.log('run github action')
   }
 }
