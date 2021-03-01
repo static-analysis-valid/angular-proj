@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'StaticAnalysis';
   constructor() {
-    console.info('how about now');
+
     console.info('how about now')
     this.title = 123;
   }
