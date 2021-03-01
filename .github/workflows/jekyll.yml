@@ -25,7 +25,7 @@ jobs:
      
      # TODO: run lint on changed files 
         
-      - name: Run linter plugin
+      # - name: Run linter plugin
         # run: npm run lint
         # uses: wearerequired/lint-action@v1
         # with:
