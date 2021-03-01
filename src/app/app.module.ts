@@ -14,5 +14,4 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  console.log("don't look at me")
 }
