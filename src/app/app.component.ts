@@ -9,5 +9,7 @@ export class AppComponent {
   title = 'StaticAnalysis';
   constructor() {
     console.info('how about now');
+    console.info('how about now')
+
   }
 }
