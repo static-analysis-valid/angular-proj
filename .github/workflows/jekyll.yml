@@ -37,6 +37,7 @@ jobs:
       - name: Echo file changes
         id: hello
         run: |
+              echo: steps.get_file_changes.outputs.files_modified
               echo Added files: ${{ steps.get_file_changes.outputs.files_added }}
               echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }}
               echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }}
