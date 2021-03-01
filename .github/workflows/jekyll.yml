@@ -26,13 +26,14 @@ jobs:
      # TODO: run lint on changed files 
         
       - name: Run linter plugin
-        uses: wearerequired/lint-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run lint
+        # uses: wearerequired/lint-action@v1
+        # with:
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
           # Enable linters
-          eslint: true
-           # Optional: scan TS
-          eslint_extensions: js,ts
+          # eslint: true
+          # Optional: scan TS
+          # eslint_extensions: js,ts
           # TODO: support rules from tslint
       
       
