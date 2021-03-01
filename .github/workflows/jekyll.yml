@@ -22,17 +22,10 @@ jobs:
       - name: Install dependency
         run: npm ci   
         
-      #- name: Run linter plugin
+      - name: Run linter plugin
       #  run: npm run lint         # TODO: run lint on changed files         
-       
-      - uses: actions/checkout@v1
-      - name: Prepare
-        run: npm ci
-      - name: Lint
-        uses: mooyoul/tslint-actions@v1.1.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pattern: '*.ts'
+        run: git diff -z --name-only --diff-filter=ACMRTUB `git merge-base HEAD master` | xargs -0 tslint
+
           
         # uses: wearerequired/lint-action@v1
         # with:
