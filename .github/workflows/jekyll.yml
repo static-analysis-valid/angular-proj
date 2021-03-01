@@ -43,7 +43,7 @@ jobs:
       
       - name: TSLint Checking
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
-        run: npm tslint --config ./tslint.json -e "**/*.(js|jsx|css|scss|html|md|json|yml)" ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }} --fix
+        run: npm tslint --config ./tslint.json -e "**/*.(js|jsx|css|scss|html|md|json|yml)" ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
 
 
 
