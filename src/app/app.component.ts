@@ -9,6 +9,8 @@ export class AppComponent {
   title = 'StaticAnalysis';
   constructor() {
     console.log('run linter from "package.json"') 
-    this.title = 123;
+    this.title = 123; // mismatched typede  
+    
+    
   }
 }
