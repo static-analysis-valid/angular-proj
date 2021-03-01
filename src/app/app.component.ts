@@ -10,6 +10,6 @@ export class AppComponent {
   constructor() {
     console.info('how about now');
     console.info('how about now')
-
+    this.title = 123;
   }
 }
