@@ -2,11 +2,33 @@ name: Test PR
 
 on:
   push:
-    branches: [ main,  master,]
+    branches: [ main,  ]
   pull_request:
-    branches: [ main, master, develop, release/* ]
+    branches: [ main, release/* ]
 
 jobs:
+  changedfiles:
+    runs-on: ubuntu-latest
+    
+    # Map a step output to a job output
+    outputs:
+      all: ${{ steps.changes.outputs.all}}
+      ts: ${{ steps.changes.outputs.ts }}
+
+    steps:
+        # Make sure we have some code to diff.
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get changed files
+        id: changes
+        # Set outputs using the command.
+        run: |
+          echo "::set-output name=all::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | xargs)"
+          echo "::set-output name=ts::$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .ts$ | xargs)"
+
+
+
   lint_pr: 
     runs-on: ubuntu-latest
     
@@ -22,12 +44,18 @@ jobs:
       - name: Install dependency
         run: npm ci   
         
-        
-      - name: Run linter plugin
-      #  run: npm run lint         # TODO: run lint on changed files         
-        run: git diff -z --name-only --diff-filter=ACMRTUB `git merge-base HEAD master` | xargs -0 tslint
 
-          
+        
+      # - name: Run linter plugin
+      #   run: npm run lint         # TODO: run lint on changed files         
+      needs: changedfiles
+      # only run there are changed files
+      if: ${{needs.changedfiles.outputs.ts}}
+      steps:
+        - name: echo changed files
+          run: echo ${{needs.changedfiles.outputs.ts}}
+
+        
         # uses: wearerequired/lint-action@v1
         # with:
           # github_token: ${{ secrets.GITHUB_TOKEN }}
