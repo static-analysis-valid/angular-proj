@@ -21,12 +21,10 @@ jobs:
           
       - name: Install dependency
         run: npm ci   
-
-     
-     # TODO: run lint on changed files 
         
-      # - name: Run linter plugin
-        # run: npm run lint
+      - name: Run linter plugin
+        run: npm run lint         # TODO: run lint on changed files         
+        
         # uses: wearerequired/lint-action@v1
         # with:
           # github_token: ${{ secrets.GITHUB_TOKEN }}
