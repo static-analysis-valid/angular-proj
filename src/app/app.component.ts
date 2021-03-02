@@ -8,5 +8,8 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'StaticAnalysis';
   constructor() {
+    console.debug('console.debug not allowed')
+    console.info('how about now')
+    this.title = 123;
   }
 }
