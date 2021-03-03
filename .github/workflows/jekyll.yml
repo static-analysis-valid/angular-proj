@@ -40,16 +40,14 @@ jobs:
         run: |
               echo Added files: ${{ steps.get_file_changes.outputs.files_added }}
               echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }}
-              echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }}
+              echo Removed files: ${{ steps.get_file_changes.outputs.files_removed | grep .ts$ }} 
       
-      - name: Asdf 
-        run: |
-          echo "TS only $( outputs.ts ) "
+      
           
       - name: TSLint Checking
-        if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ }}
+        if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified)  }}
         # tslint [options] [file ...]
-        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added | grep .ts$ }} ${{ steps.get_file_changes.outputs.files_modified | grep .ts$}}
+        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
   
 
 
