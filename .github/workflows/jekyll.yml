@@ -13,7 +13,7 @@ jobs:
     # Map a step output to a job output
     outputs:
       all: ${{ steps.changes.outputs.all}}
-      ts: ${{ steps.changes.outputs.ts }}
+      ts: ${{ steps.get_file_changes.outputs.files_added }}  grep .ts$ | xargs
 
     steps:
         # Make sure we have some code to diff.
@@ -41,11 +41,15 @@ jobs:
               echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }}
               echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }}
       
+      - name: Asdf 
+        run: |
+          echo "TS only ${{ changedfiles.outputs.ts }} "
+          
       - name: TSLint Checking
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
         # tslint [options] [file ...]
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
-
+  
 
 
 
