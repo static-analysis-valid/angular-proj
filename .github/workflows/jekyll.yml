@@ -43,7 +43,7 @@ jobs:
       
       - name: Asdf 
         run: |
-          echo "TS only ${{ changedfiles.outputs.ts }} "
+          echo "TS only ${{ outputs.ts }} "
           
       - name: TSLint Checking
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
