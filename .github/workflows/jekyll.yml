@@ -37,38 +37,21 @@ jobs:
       - name: Echo file changes
         id: hello
         run: |
-              echo: steps.get_file_changes.outputs.files_modified
               echo Added files: ${{ steps.get_file_changes.outputs.files_added }}
               echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }}
               echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }}
       
       - name: TSLint Checking
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
-        run: $(git rev-parse --show-toplevel)/node_modules/.bin/eslint --config ./tslint.json -e "**/*.(js|jsx|css|scss|html|md|json|yml)" ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
+        # tslint [options] [file ...]
+        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
+
+
+
+
+
 
 
 
         
         
-        
-        
-      #- name: Run linter plugin
-      #   run: npm run lint         # TODO: run lint on changed files         
-     
-
-        
-        # uses: wearerequired/lint-action@v1
-        # with:
-          # github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Enable linters
-          # eslint: true
-          # Optional: scan TS
-          # eslint_extensions: js,ts
-          # TODO: support rules from tslint
-      
-      
-    
-  
-
- 
-
