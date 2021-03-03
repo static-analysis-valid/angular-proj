@@ -57,7 +57,6 @@ jobs:
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .scss$ | xargs  }}
         
         # run linter on changed ts files 
-        # tslint -p . [file.ts ...]
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/stylelint -p $(git rev-parse --show-toplevel) (${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }} | grep .scss$ | xargs  )
        
 
