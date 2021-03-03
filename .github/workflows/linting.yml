@@ -1,3 +1,6 @@
+
+
+
 name: Test PR
 
 on:
@@ -42,14 +45,14 @@ jobs:
               echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }} 
       
       
-      # Run TS linter on changed files 
+      # Run TS linter on changed files using the settings configured in the 
       - name: TSLint Checking
         # check if added or modified files 
         # how to store changed TS files in a variable? e.g. # TSchanges = (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs         
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs  }}
         
         # run linter on changed ts files 
-        # tslint -p . [file.ts ...]
+        # tslint -p ./tslint.json [file.ts ...]
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) (${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }} | grep .ts$ | xargs  )
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
     
@@ -63,6 +66,14 @@ jobs:
 
 
 
+
+
+
+# TODO: how to cache the npm? 
+# TODO: where is better to run build test? TeamCity or Github? 
+# TODO: how to store changed files in a variable? E.g. var changed_ts = ${{ steps.get_file_changes.outputs.files_removed  }}
+# TODO: use ESLinter or TSLinter? 
+# TODO: Are there Github Linter actions that support our config (tslint.json) file ? 
 
 
 
