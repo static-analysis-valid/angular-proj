@@ -12,6 +12,7 @@ jobs:
     
     # Map a step output to a job output
     outputs:
+      id: outputs
       all: ${{ steps.changes.outputs.all}}
       ts: ${{ steps.get_file_changes.outputs.files_added }}  grep .ts$ | xargs
 
