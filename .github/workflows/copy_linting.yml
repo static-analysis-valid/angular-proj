@@ -46,8 +46,8 @@ jobs:
       
       - name: find files
         run: |
-          #FILES=(${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }})
-          FILES=(src/main.ts polyfills.ts src/index.html)
+          FILES=(${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }})
+          #FILES=(src/main.ts polyfills.ts src/index.html)
           TSFILES=$(printf -- '%s\n' "${FILES[@]}" | grep \.ts$ | tr '\n' ' ')
           echo "FILES_TO_CHECK=$TSFILES"  >> $GITHUB_ENV
     
