@@ -46,7 +46,7 @@ jobs:
       
       - name: find files
         run: |
-          FILES=(${{ steps.get_file_changes.outputs.files_added }}) 
+          FILES=(${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }})
           echo $FILES
       
       # Run TS linter on changed files using the settings configured in the 
