@@ -47,7 +47,7 @@ jobs:
       - name: find files
         run: |
           #FILES=(${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }})
-          FILES=(file2.ts file2.json file3.html file4.ts)
+          FILES=(src/main.ts polyfills.ts src/index.html)
           TSFILES=$(printf -- '%s\n' "${FILES[@]}" | grep \.ts$ | tr '\n' ' ')
           echo "FILES_TO_CHECK=$TSFILES"  >> $GITHUB_ENV
     
@@ -62,11 +62,13 @@ jobs:
       - name: TSLint Checking
         # check if added or modified files 
         # how to store changed TS files in a variable? e.g. # TSchanges = (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs         
-        if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
+        #if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
+        if: env.FILES_TO_CHECK
         
         # run linter on changed ts files 
         # tslint -p ./tslint.json [file.ts ...]
-        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
+        #run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
+        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) $FILES_TO_CHECK
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
     
 
