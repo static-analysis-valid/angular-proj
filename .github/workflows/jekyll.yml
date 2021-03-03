@@ -14,7 +14,7 @@ jobs:
     outputs:
       id: outputs
       all: ${{ steps.changes.outputs.all}}
-      ts: ${{ steps.get_file_changes.outputs.files_added }}  grep .ts$ | xargs
+      ts: ${{ steps.get_file_changes.outputs.files_added }} | grep .ts$ | xargs
 
     steps:
         # Make sure we have some code to diff.
@@ -44,12 +44,12 @@ jobs:
       
       - name: Asdf 
         run: |
-          echo "TS only ${{ outputs.ts }} "
+          echo "TS only $( outputs.ts ) "
           
       - name: TSLint Checking
-        if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
+        if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ }}
         # tslint [options] [file ...]
-        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
+        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added | grep .ts$ }} ${{ steps.get_file_changes.outputs.files_modified | grep .ts$}}
   
 
 
