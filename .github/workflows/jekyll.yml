@@ -33,14 +33,16 @@ jobs:
         id: get_file_changes
         uses: trilom/file-changes-action@v1.2.3
         with:
+          files: | 
+            .(ts)$
           output: ' '
           
       - name: Echo file changes
         id: hello
         run: |
-              echo Added files: ${{ steps.get_file_changes.outputs.files_added }} | grep .ts$ 
-              echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }} | grep .ts$ 
-              echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }}  | grep .ts$ 
+              echo Added files: ${{ steps.get_file_changes.outputs.files_added }}
+              echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }} 
+              echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }} 
       
       
           
