@@ -48,7 +48,7 @@ jobs:
         run: |
           #FILES=(${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }})
           FILES=(file1.json file2.ts)
-          echo $FILES
+          ls -l $FILES
         
           #TSFILES=$(printf -- ‘%s\n’ “${FILES[@]}” | grep \.ts$ | tr '\n' ' ')
           echo $TSFILES
