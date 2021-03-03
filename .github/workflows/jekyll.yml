@@ -2,20 +2,14 @@ name: Test PR
 
 on:
   push:
-    branches: [ main,  ]
+    branches: [ main, master, develop ]
   pull_request:
-    branches: [ main, release/* ]
+    branches: [ main, master, develop, release/* ]
 
 jobs:
   changedfiles:
     runs-on: ubuntu-latest
     
-    # Map a step output to a job output
-    outputs:
-      id: outputs
-      all: ${{ steps.changes.outputs.all}}
-      ts: ${{ steps.get_file_changes.outputs.files_added }} | grep .ts$ | xargs
-
     steps:
         # Make sure we have some code to diff.
       - name: Checkout repository
@@ -29,11 +23,14 @@ jobs:
       - name: Install dependency
         run: npm ci     
         
+      # 3rd party lib 
+      # get changed files from PR
+      # returns added, modified & removed files 
       - name: Get file changes
         id: get_file_changes
         uses: trilom/file-changes-action@v1.2.3
         with:
-          output: ' '
+          output: ' ' # output as a text 
           
       - name: Echo file changes
         id: hello
@@ -43,10 +40,12 @@ jobs:
               echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }} 
       
       
-          
+      # Run linter on changed files 
       - name: TSLint Checking
+        # check if added or modified files 
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified)  }}
-        # tslint [options] [file ...]
+        
+        # tslint -p . [file.ts ...]
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
   
 
