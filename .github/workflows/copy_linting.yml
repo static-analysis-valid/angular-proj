@@ -44,6 +44,10 @@ jobs:
               echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }} 
               echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }} 
       
+      - name: find files
+        run: |
+          FILES=(${{ steps.get_file_changes.outputs.files_added }}) 
+          echo $FILES
       
       # Run TS linter on changed files using the settings configured in the 
       - name: TSLint Checking
