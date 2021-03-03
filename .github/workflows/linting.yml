@@ -45,14 +45,13 @@ jobs:
       # Run TS linter on changed files 
       - name: TSLint Checking
         # check if added or modified files 
-        # how to store changed TS files in a variable 
-        # TSchanges = (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs         
+        # how to store changed TS files in a variable? e.g. # TSchanges = (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs         
         if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs  }}
         
         # run linter on changed ts files 
         # tslint -p . [file.ts ...]
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) (${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }} | grep .ts$ | xargs  )
-        
+        # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
     
       # Run SCSS linter on changed files 
       - name: StyleLint Checking       
