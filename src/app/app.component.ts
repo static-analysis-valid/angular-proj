@@ -9,5 +9,6 @@ export class AppComponent {
   title = 'StaticAnalysis';
   constructor() {
     console.debug('asdf')
+    this.title = 123
   }
 }
