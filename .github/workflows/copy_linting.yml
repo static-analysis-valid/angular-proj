@@ -62,6 +62,7 @@ jobs:
 
 
       
+    
       # Run TS linter on changed files using the settings configured in the 
       - name: TSLint Checking
         # check if added or modified files 
@@ -75,13 +76,20 @@ jobs:
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) $TS_FILES
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
         
+
+  StyleLint: 
+    runs-on: ubuntu-latest
+    # require the first job to have ran
+    needs: changedfiles
+    
+    # only run there are changed files
+    if: env.SCSS_FILES
+   
+    steps:
       # Run TS linter on changed files using the settings configured in the 
       - name: StyleLint Checking
-        # check if added or modified files 
-        if: ${{ always() && env.SCSS_FILES }}
-        
-        # run linter on changed ts files:  "$ stylelint ./app.component.scss [file.scss...]"
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/stylelint $SCSS_FILES
+
     
 
 
