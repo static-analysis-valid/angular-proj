@@ -28,8 +28,7 @@ jobs:
       - name: Install dependency
         run: npm ci     
         
-      # 3rd party lib 
-      # get changed files from PR
+      # 3rd party lib get changed files from PR
       # returns added, modified & removed files 
       - name: Get file changes
         id: get_file_changes
@@ -44,16 +43,21 @@ jobs:
               echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }} 
               echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }} 
       
+      
       - name: find files
         run: |
           FILES=(${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }})
-          #FILES=(src/main.ts polyfills.ts src/index.html)
           TSFILES=$(printf -- '%s\n' "${FILES[@]}" | grep \.ts$ | tr '\n' ' ')
           echo "FILES_TO_CHECK=$TSFILES"  >> $GITHUB_ENV
+          
+          FILTERED_SCSS_FILES = $(printf -- '%s\n' "${FILES[@]}" | grep \.scss$ | tr '\n' ' ')
+          echo "SCSS_FILES = $FILTERED_SCSS_FILES" >>  $GITHUB_ENV
+          
     
       - name: list variable
         run: |
           echo $FILES_TO_CHECK
+          echo $SCSS_FILES
 
 
 
