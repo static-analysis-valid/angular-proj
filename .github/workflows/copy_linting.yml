@@ -83,7 +83,7 @@ jobs:
     needs: changedfiles
     
     # only run there are changed files
-    if: ${{ changedfiles.SCSS_FILES }}
+    if: ${{ needs.changedfiles.SCSS_FILES }}
    
     steps:
       # Run TS linter on changed files using the settings configured in the 
