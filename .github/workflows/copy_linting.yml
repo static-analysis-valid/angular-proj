@@ -81,7 +81,7 @@ jobs:
         if: ${{ always() && env.SCSS_FILES }}
         
         # run linter on changed ts files:  "$ stylelint ./app.component.scss [file.scss...]"
-        run: $(git rev-parse --show-toplevel)/node_modules/.bin/stylelint $(git rev-parse --show-toplevel) $SCSS_FILES
+        run: $(git rev-parse --show-toplevel)/node_modules/.bin/stylelint $SCSS_FILES
     
 
 
