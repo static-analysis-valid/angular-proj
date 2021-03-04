@@ -5,9 +5,9 @@ name: ACTION IN SUB BRANCH
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ * ]
   pull_request:
-    branches: [ main, master, develop, release/* ]
+    branches: [ * ]
 
 jobs:
   changedfiles:
