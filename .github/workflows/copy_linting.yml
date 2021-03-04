@@ -47,16 +47,16 @@ jobs:
       - name: find files
         run: |
           FILES=(${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }})
-          TSFILES=$(printf -- '%s\n' "${FILES[@]}" | grep \.ts$ | tr '\n' ' ')
-          echo "FILES_TO_CHECK=$TSFILES"  >> $GITHUB_ENV
+          CHANGED_TS_FILES=$(printf -- '%s\n' "${FILES[@]}" | grep \.ts$ | tr '\n' ' ')
+          echo "TS_FILES=$CHANGED_TS_FILES"  >> $GITHUB_ENV
           
-          FILTERED_SCSS_FILES=$(printf -- '%s\n' "${FILES[@]}" | grep \.scss$ | tr '\n' ' ')
-          echo "SCSS_FILES=$FILTERED_SCSS_FILES" >>  $GITHUB_ENV
+          CHANGED_SCSS_FILES=$(printf -- '%s\n' "${FILES[@]}" | grep \.scss$ | tr '\n' ' ')
+          echo "SCSS_FILES=$CHANGED_SCSS_FILES" >>  $GITHUB_ENV
           
     
       - name: list variable
         run: |
-          echo $FILES_TO_CHECK
+          echo $TS_FILES
           echo $SCSS_FILES
 
 
@@ -67,14 +67,15 @@ jobs:
         # check if added or modified files 
         # how to store changed TS files in a variable? e.g. # TSchanges = (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs         
         #if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
-        if: env.FILES_TO_CHECK
+        if: env.TS_FILES
         
         # run linter on changed ts files 
         # tslint -p ./tslint.json [file.ts ...]
         #run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
-        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) $FILES_TO_CHECK
+        run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) $TS_FILES
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
     
+
 
 
 
