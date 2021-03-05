@@ -1,13 +1,10 @@
-
-
-
-name: COPY LINT PR
+name: LINT PR
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ "*" ]
   pull_request:
-    branches: [ main, master, develop, release/* ]
+    branches: [ "*" ]
 
 jobs:
   changedfiles:
@@ -19,7 +16,6 @@ jobs:
         uses: actions/checkout@v2
         
         
-      # TODO: Don't want to run Node Setup if no modified files (e.g. ts, scss,..) 
       - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
@@ -28,7 +24,7 @@ jobs:
       - name: Install dependency
         run: npm ci     
         
-      # 3rd party lib get changed files from PR
+      # 3rd party lib; get changed files from PR 
       # returns added, modified & removed files 
       - name: Get file changes
         id: get_file_changes
@@ -44,7 +40,7 @@ jobs:
               echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }} 
       
       
-      - name: find files
+      - name: find files # Find changed TS and SCSS files 
         run: |
           FILES=(${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }})
           CHANGED_TS_FILES=$(printf -- '%s\n' "${FILES[@]}" | grep \.ts$ | tr '\n' ' ')
@@ -66,31 +62,23 @@ jobs:
       # Run TS linter on changed files using the settings configured in the 
       - name: TSLint Checking
         # check if added or modified files 
-        # how to store changed TS files in a variable? e.g. # TSchanges = (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs         
-        #if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
         if: env.TS_FILES
         
         # run linter on changed ts files 
         # tslint -p ./tslint.json [file.ts ...]
-        #run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) $TS_FILES
-        # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
-        
 
-  StyleLint: 
-    runs-on: ubuntu-latest
-    # require the first job to have ran
-    needs: changedfiles
-    
-    # only run there are changed files
-    if: env.SCSS_FILES
-   
-    steps:
+
       # Run TS linter on changed files using the settings configured in the 
       - name: StyleLint Checking
+        # check if added or modified files 
+        if: ${{ always() && env.SCSS_FILES }}
+
+        # run linter on changed ts files:  "$ stylelint ./app.component.scss [file.scss...]"
         run: $(git rev-parse --show-toplevel)/node_modules/.bin/stylelint $SCSS_FILES
 
-    
+
+
 
 
 

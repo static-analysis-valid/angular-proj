@@ -1,14 +1,9 @@
 {
   "extends": "tslint:recommended",
-  "rulesDirectory": [
-    "codelyzer"
-  ],
+  "rulesDirectory": [ "codelyzer"],
   "rules": {
     "align": {
-      "options": [
-        "parameters",
-        "statements"
-      ]
+      "options": ["parameters", "statements"]
     },
     "array-type": false,
     "arrow-return-shorthand": true,
@@ -64,10 +59,9 @@
       true,
       "as-needed"
     ],
-    "quotemark": [
-      true,
-      "single"
-    ],
+    "quotemark": {
+      "options": ["single"]
+    },
     "semicolon": {
       "options": [
         "always"
@@ -84,7 +78,7 @@
     },
     "typedef": [
       true,
-      "call-signature"
+      "property-declaration"
     ],
     "typedef-whitespace": {
       "options": [
@@ -140,13 +134,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      "ss",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      "ss",
       "kebab-case"
     ]
   }
