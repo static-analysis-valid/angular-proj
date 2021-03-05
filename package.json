@@ -2,9 +2,9 @@
   "name": "static-analysis",
   "version": "0.0.0",
   "description": "frontend prototype app itself",
-  "email": "marco@simplesite.com",
-  "url": "https://github.com/simplesite/frontendprototype",
   "main": "index.js",
+  "private": true,
+  "license": "ISC",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -14,12 +14,12 @@
     "createcert": "c:/123/openssl/openssl.exe req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout sslcert\\key.pem -out sslcert\\cert.pem -config \"C:\\123\\frontendprototype\\app\\sslcert\\openssl config.txt\"",
     "e2e": "ng e2e"
   },
-  "private": true,
+  
   "repository": {
     "type": "git",
     "url": "git@github.com:simplesite/frontendprototype.git"
   },
-  "license": "ISC",
+  
   "dependencies": {
     "@angular/animations": "^8.0.3",
     "@angular/cdk": "^8.0.1",
