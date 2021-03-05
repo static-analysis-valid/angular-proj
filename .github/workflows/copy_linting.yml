@@ -2,7 +2,7 @@ name: LINT PR
 
 on:
   push:
-    branches: [ "*" ]
+    branches: [main, master, develop, release/* ]
   pull_request:
     branches: [ "*" ]
 
