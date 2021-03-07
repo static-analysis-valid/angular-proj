@@ -10,5 +10,7 @@ export class AppComponent {
   constructor() {
     console.debug('asdf')
     this.title = 123
+    console.info('validate only feature branch')
+    console.log('check it again')
   }
 }
