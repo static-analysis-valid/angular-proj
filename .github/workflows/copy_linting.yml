@@ -92,7 +92,10 @@ jobs:
     steps:
       # Run TS linter on changed files using the settings configured in the 
       - name: StyleLint Checking
-        run: $(git rev-parse --show-toplevel)/node_modules/.bin/stylelint $SCSS_FILES
+        run: | 
+          $(git rev-parse --show-toplevel)/node_modules/.bin/stylelint $SCSS_FILES
+          echo "::debug::Set the Octocat variable"
+
 
     
 
