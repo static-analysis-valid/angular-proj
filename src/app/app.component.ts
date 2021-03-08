@@ -12,5 +12,6 @@ export class AppComponent {
     this.title = 123
     title = 'test what is project root?'
     
+    console.log('run forest') 
   }
 }
