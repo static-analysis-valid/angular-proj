@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .empty-block { // block-no-empty: Disallow empty blocks.
-
+  color: red;
 }
 
 p{ // block-opening-brace-space-before: There must always be a single space before the opening brace.
