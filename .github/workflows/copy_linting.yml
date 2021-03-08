@@ -24,7 +24,7 @@ jobs:
           node-version: 12
           
       - name: Install dependency
-      #  run: npm ci     
+        run: npm ci     
       #  run: |
       #    npm i -g tslint 
       #    npm i -g stylelint 
