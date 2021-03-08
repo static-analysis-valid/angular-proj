@@ -11,5 +11,6 @@ export class AppComponent {
     console.debug('asdf')
     this.title = 123
     title = 'test what is project root?'
+    
   }
 }
