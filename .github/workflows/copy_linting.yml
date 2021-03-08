@@ -61,6 +61,8 @@ jobs:
         run: |
           echo $TS_FILES
           echo $SCSS_FILES
+          echo "::debug::Set the Octocat variable"
+
 
 
 
@@ -96,7 +98,6 @@ jobs:
       - name: StyleLint Checking
         run: | 
           $(git rev-parse --show-toplevel)/node_modules/.bin/stylelint $SCSS_FILES
-          echo "::debug::Set the Octocat variable"
 
 
     
