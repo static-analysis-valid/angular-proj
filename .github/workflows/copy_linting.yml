@@ -4,6 +4,8 @@
 name: COPY LINT PR
 
 on:
+  push: 
+    branches: ["*"]
   pull_request:
     branches: [ main, master, develop, release/* ]
 
