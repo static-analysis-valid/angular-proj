@@ -27,10 +27,10 @@ jobs:
           
       - name: Install dependency
         run: npm ci     
-      #  run: |
-      #    npm i -g tslint 
-      #    npm i -g stylelint 
-        
+        #  run: |
+        #    npm i -g tslint 
+        #    npm i -g stylelint 
+
       # 3rd party lib get changed files from PR
       # returns added, modified & removed files 
       - name: Get file changes
@@ -61,7 +61,7 @@ jobs:
         run: |
           echo $TS_FILES
           echo $SCSS_FILES
-          echo "::debug::Set the Octocat variable"
+          echo "::warning::Set the Octocat variable"
 
 
 
