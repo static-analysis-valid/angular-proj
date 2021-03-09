@@ -42,6 +42,9 @@ jobs:
           eslint: true,
           eslint_extensions: ts
           
+          stylelint: true
+       
+          
 
 
       # Run TS linter on changed files using the settings configured in the 
