@@ -40,8 +40,7 @@ jobs:
         uses: wearerequired/lint-action@v1
         with:
           eslint: true,
-          eslint_dir: ./app/,
-          eslint_extensions: ts,
+          eslint_extensions: ts
           
 
 
