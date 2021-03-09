@@ -65,6 +65,11 @@ jobs:
           echo "::warning file=src/app/app.component.scss,line=1,col=5::Missing semicolon"
 
 
+      - name: Run linters
+        uses: wearerequired/lint-action@v1
+        with: 
+          eslint: true
+          # Enable your linters here
 
 
 
