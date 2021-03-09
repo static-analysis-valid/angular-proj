@@ -26,7 +26,7 @@ jobs:
           node-version: 12
           
       - name: Install dependency
-        run: cd app && npm ci     
+        run: cd app && npm ci 
       #  run: |
       #    npm i -g tslint 
       #    npm i -g stylelint 
@@ -41,8 +41,10 @@ jobs:
         with:
           eslint: true,
           eslint_extensions: ts
+          eslint_dir: app/
           
           stylelint: true
+          stylelint_dir: app/
        
           
 
