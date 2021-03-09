@@ -11,6 +11,6 @@ export class AppComponent {
     console.debug('asdf')
     this.title = 123
     
-    console.info('hello world')
+    console.info('hello world');
   }
 }
