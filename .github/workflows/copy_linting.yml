@@ -41,7 +41,7 @@ jobs:
         with:
           eslint: true,
           eslint_dir: ./app/,
-          eslint_extensions: ts,
+          eslint_extensions: ts
           
 
 
