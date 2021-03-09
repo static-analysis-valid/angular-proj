@@ -13,5 +13,6 @@ export class AppComponent {
     
     console.info('hello world')
     // detect missing console.log
+    console.log('no semi')
   }
 }
