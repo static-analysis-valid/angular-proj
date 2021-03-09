@@ -39,8 +39,10 @@ jobs:
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
-          eslint: true         
+          eslint: true   
+          eslint_dir: app/
           stylelint: true
+          stylelint_dir: app/
 
        
           
