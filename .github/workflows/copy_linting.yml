@@ -59,6 +59,11 @@ jobs:
           echo "SCSS_FILES=$CHANGED_SCSS_FILES" >>  $GITHUB_ENV
           
 
+      - name: Generate Error Annotations
+        run: |
+          text="Missing semicolon"
+          echo "::warning file=app/src/app/app.component.ts,line=11,col=5::$text"
+
 
       # Run TS linter on changed files using the settings configured in the 
       - name: TSLint Checking
@@ -76,10 +81,6 @@ jobs:
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
         
 
-      - name: Generate Error Annotations
-        run: |
-          text="Missing semicolon"
-          echo "::warning file=/app/src/app/app.component.ts,line=11,col=5::$text"
 
         
       # Run TS linter on changed files using the settings configured in the 
