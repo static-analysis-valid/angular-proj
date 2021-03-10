@@ -27,7 +27,8 @@ jobs:
 
         
       - name: Install dependency
-        run: npm ci     
+        run: cd app && npm ci     
+   
       #  run: |
       #    npm i -g tslint 
       #    npm i -g stylelint 
