@@ -26,7 +26,7 @@ jobs:
           node-version: 12
           
       - name: Install dependency
-        run: cd app && npm ci     
+          run: cd app && npm ci     
 
         
 
