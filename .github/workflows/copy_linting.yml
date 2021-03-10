@@ -76,21 +76,19 @@ jobs:
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
         
 
-      
+      - name: Generate Error Annotations
+        run: |
+          text="Missing semicolon"
+          echo "::warning file=/app/src/app/app.component.ts,line=11,col=5::$text"
+
         
       # Run TS linter on changed files using the settings configured in the 
       - name: StyleLint Checking
         if: env.SCSS_FILES
         # Usage: stylelint [input] [options]
-        run: | 
-          $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
+        run: $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
 
 
-          
-      - name: Generate Error Annotations
-        run: |
-          text="Missing semicolon"
-          echo "::warning file=/app/src/app/app.component.ts,line=11,col=5::$text"
 
     
 
