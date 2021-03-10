@@ -90,8 +90,7 @@ jobs:
       - name: Generate Error Annotations
         run: |
           text="Missing semicolon"
-          file="/app/src/app/app.component.ts"
-          echo "::warning file=$file,line=11,col=5::$text"
+          echo "::warning file=/app/src/app/app.component.ts,line=11,col=5::$text"
 
     
 
