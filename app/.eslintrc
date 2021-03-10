@@ -13,10 +13,7 @@
 		"sourceType": "module" // Allows for the use of imports
 	},
 	"rules": {
-		"indent": [
-			"error",
-			"tab"
-		],
+
 		"quotes": [
 			"error",
 			"single"
@@ -24,6 +21,8 @@
 		"semi": [
 			"error",
 			"always"
-		]
+		],
+		"indent": "off",
+		"@typescript-eslint/indent": "off"
 	}
 }
