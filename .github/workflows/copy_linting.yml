@@ -86,6 +86,13 @@ jobs:
           $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
 
 
+          
+      - name: Generate Error Annotations
+        run: |
+          text="Missing semicolon"
+          file="/app/src/app/app.component.ts"
+          echo "::warning file=$file,line=11,col=5::$text"
+
     
 
 
