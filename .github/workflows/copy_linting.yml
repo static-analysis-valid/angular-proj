@@ -50,11 +50,11 @@ jobs:
         # only run there are changed files
         if: ${{ needs.changedfiles.SCSS_FILES }}
       
-        steps:
-          # Run TS linter on changed files using the settings configured in the 
-          - name: StyleLint Checking
-            run: | 
-              $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
+        
+      # Run TS linter on changed files using the settings configured in the 
+      - name: StyleLint Checking
+        run: | 
+          $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
 
 
     
