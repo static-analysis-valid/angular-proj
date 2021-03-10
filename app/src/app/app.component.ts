@@ -12,5 +12,7 @@ export class AppComponent {
     this.title = 123
     
     console.info('hello world')
+    // detect missing console.log
+    console.log('no semi')
   }
 }

@@ -1,16 +1,39 @@
+
 {
     "parser": "@typescript-eslint/parser",
+    "plugins": [
+        "@typescript-eslint",
+        "angular"
+    ],
     "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended"
     ],
-    "parserOptions": {
-        "ecmaVersion": 2020,
-        "sourceType": "module" // Allows for the use of imports
-    },
     "rules": {
-        // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-        // "prefer-namespace-keyword": 0, 
-        // "no-namespace": 0
-        "semi": 2
+         "no-extra-semi": "off",
+        // "@typescript-eslint/no-extra-semi": "warn",
+
+        // "no-unused-vars": "off",
+        // "@typescript-eslint/no-unused-vars": "warn",
+        "no-useless-escape": "off",
+        "no-var": "warn",
+        "no-empty": "warn",
+        "no-mixed-spaces-and-tabs": "warn",
+        "prefer-const": "warn",
+        "prefer-spread": "warn",
+        "prefer-rest-params": "warn",
+        
+        "@typescript-eslint/indent": "off", 
+        "@typescript-eslint/ban-types": "warn",
+        "@typescript-eslint/no-var-requires": "warn",        
+        "@typescript-eslint/no-inferrable-types": "warn",
+        "@typescript-eslint/no-empty-function": "warn",
+        "@typescript-eslint/no-extra-semi": "warn",
+        "@typescript-eslint/no-array-constructor": "warn",
+        "@typescript-eslint/no-this-alias": "warn",
+        "@typescript-eslint/no-empty-interface": "warn",
+        "@typescript-eslint/adjacent-overload-signatures": "warn",
+        "@typescript-eslint/ban-ts-comment": "warn"
     }
 }

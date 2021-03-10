@@ -31,18 +31,37 @@ jobs:
       #    npm i -g tslint 
       #    npm i -g stylelint 
         
-
-    
+      
+      
+      - name: Get file changes
+        id: get_file_changes
+        uses: trilom/file-changes-action@v1.2.3 # https://github.com/marketplace/actions/file-changes-action
+        with:
+          output: ' ' # output as a text 
+          
+      - name: Echo file changes
+        id: hello
+        run: |
+              echo Added files: ${{ steps.get_file_changes.outputs.files_added }}
+              echo Changed files: ${{ steps.get_file_changes.outputs.files_modified }} 
+              echo Removed files: ${{ steps.get_file_changes.outputs.files_removed }} 
 
 
 
       - name: Run linters
         uses: wearerequired/lint-action@v1
         with:
-          eslint: true,
+          eslint: true   
           eslint_extensions: ts
-          
+          eslint_dir: app/
+
+
           stylelint: true
+          stylelint_dir: app/
+          stylelint_args: ${{ steps.get_file_changes.outputs.files}}
+
+          
+
        
           
 
