@@ -70,7 +70,7 @@ jobs:
         # run linter on changed ts files 
         # tslint -p ./tslint.json [file.ts ...]
         # run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
-        run: $(git rev-parse --show-toplevel)/app/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) $TS_FILES 
+        run: $(git rev-parse --show-toplevel)/app/node_modules/.bin/tslint -p ./app/ $TS_FILES 
         
         # run: tslint -p $(git rev-parse --show-toplevel) $TS_FILES 
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
