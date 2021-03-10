@@ -25,6 +25,7 @@ jobs:
         with:
           node-version: 12
           
+          
       - name: Install dependency
         run: cd app && npm ci     
 
@@ -46,9 +47,6 @@ jobs:
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
         
 
-      - name: TSLint Checking        
-        # only run there are changed files
-        if: ${{ needs.changedfiles.SCSS_FILES }}
       
         
       # Run TS linter on changed files using the settings configured in the 
