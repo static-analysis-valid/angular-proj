@@ -85,11 +85,12 @@ jobs:
         # Usage: stylelint [input] [options]
         run: |
           # LINT_ISSUES=$(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
-          LINT_ISSUES="
+          LINT_ISSUES << EOF
             ERROR: 11:5   no-console  Calls to 'console.debug' are not allowed.
             ERROR: 11:26  semicolon   Missing semicolon
             ERROR: 12:21  semicolon   Missing semicolon
-            ERROR: 14:5   no-console  Calls to 'console.info' are not allowed."
+            ERROR: 14:5   no-console  Calls to 'console.info' are not allowed.
+            EOF
           echo "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
 
 
@@ -98,7 +99,7 @@ jobs:
       - name: Generate Error Annotations
         run: |
           text="Missing semicolon"
-          echo STYLE files with issues: env.STYLE_LINT_ISSUES 
+          echo "STYLE files with issues: $STYLE_LINT_ISSUES"
           echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"
 
 
