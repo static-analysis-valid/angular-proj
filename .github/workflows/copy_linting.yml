@@ -72,13 +72,6 @@ jobs:
         run: |
           LINT_ISSUES=$(git rev-parse --show-toplevel)/app/node_modules/.bin/tslint -p ./app/ $TS_FILES
           echo "TS_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
-
-
-      - name: Generate Error Annotations
-        run: |
-          text="Missing semicolon"
-          echo TS files with issues: env.TS_LINT_ISSUES 
-          echo "::warning file=app/src/app/app.component.ts,line=11,col=5::$text"
         
         # run: tslint -p $(git rev-parse --show-toplevel) $TS_FILES 
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
@@ -90,11 +83,18 @@ jobs:
       - name: StyleLint Checking
         if: env.SCSS_FILES
         # Usage: stylelint [input] [options]
-        run: $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
+        run: |
+          LINT_ISSUES=$(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
+          cho "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
 
 
 
-    
+
+      - name: Generate Error Annotations
+        run: |
+          text="Missing semicolon"
+          echo STYLE files with issues: env.STYLE_LINT_ISSUES 
+          echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"
 
 
 
