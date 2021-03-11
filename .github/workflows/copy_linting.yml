@@ -90,7 +90,7 @@ jobs:
             ERROR: 11:26  semicolon   Missing semicolon
             ERROR: 12:21  semicolon   Missing semicolon
             ERROR: 14:5   no-console  Calls to 'console.info' are not allowed.
-            EOF
+          EOF
           echo "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
 
 
