@@ -102,7 +102,7 @@ jobs:
 
       - name: Generate Error Annotations
         run: |
-          text=env.STYLE_LINT_ISSUES
+          text=$STYLE_LINT_ISSUES
           echo "STYLE files with issues: $STYLE_LINT_ISSUES"
           echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"
 
