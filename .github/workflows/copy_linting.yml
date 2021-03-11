@@ -88,7 +88,7 @@ jobs:
         #run: LINT_ISSUES="Multiline string here"
         run: |
           echo Parse output: $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES 
-          LINT_ISSUES="$($(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint --format json $SCSS_FILES)"
+          LINT_ISSUES="$($(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint -f json $SCSS_FILES)"
           echo Lint_Issues: $LINT_ISSUES          
 
           echo "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
