@@ -87,7 +87,7 @@ jobs:
         
         #run: LINT_ISSUES="Multiline string here"
         run: |
-          LINT_ISSUES<<-EOF
+          LINT_ISSUES <<-EOF
             ERROR: 11:5   no-console  Calls to 'console.debug' are not allowed.
             ERROR: 11:26  semicolon   Missing semicolon
             ERROR: 12:21  semicolon   Missing semicolon
