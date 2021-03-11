@@ -70,7 +70,7 @@ jobs:
         # tslint -p ./tslint.json [file.ts ...]
         # run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
         run: |
-          LINT_ISSUES= $(git rev-parse --show-toplevel)/app/node_modules/.bin/tslint -p ./app/ $TS_FILES
+          LINT_ISSUES=$(git rev-parse --show-toplevel)/app/node_modules/.bin/tslint -p ./app/ $TS_FILES
           echo "TS_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
 
 
