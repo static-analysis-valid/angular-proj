@@ -87,13 +87,7 @@ jobs:
         
       
         run: |
-          LINT_ISSUES <<- EOF
-            ERROR: 11:5   no-console  Calls to 'console.debug' are not allowed.
-            ERROR: 11:26  semicolon   Missing semicolon
-            ERROR: 12:21  semicolon   Missing semicolon
-            ERROR: 14:5   no-console  Calls to 'console.info' are not allowed.
-          EOF
-
+          LINT_ISSUES="Multiline string here"
           echo "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
 
 
