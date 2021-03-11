@@ -77,7 +77,7 @@ jobs:
       - name: Generate Error Annotations
         run: |
           text="Missing semicolon"
-          echo TS files with issues: ${{ TS_LINT_ISSUES }} 
+          echo TS files with issues: env.TS_LINT_ISSUES 
           echo "::warning file=app/src/app/app.component.ts,line=11,col=5::$text"
         
         # run: tslint -p $(git rev-parse --show-toplevel) $TS_FILES 
