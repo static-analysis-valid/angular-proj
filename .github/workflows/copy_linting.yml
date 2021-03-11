@@ -85,7 +85,7 @@ jobs:
         # Usage: stylelint [input] [options]
         run: |
           LINT_ISSUES=$(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES
-          cho "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
+          echo "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
 
 
 
