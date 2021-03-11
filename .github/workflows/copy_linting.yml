@@ -29,9 +29,6 @@ jobs:
       - name: Install dependency
         run: cd app && npm ci     
    
-      #  run: |
-      #    npm i -g tslint 
-      #    npm i -g stylelint 
         
       # 3rd party lib get changed files from PR
       # returns added, modified & removed files 
@@ -59,10 +56,7 @@ jobs:
           echo "SCSS_FILES=$CHANGED_SCSS_FILES" >>  $GITHUB_ENV
           
 
-      - name: Generate Error Annotations
-        run: |
-          text="Missing semicolon"
-          echo "::warning file=app/src/app/app.component.ts,line=11,col=5::$text"
+      
 
 
       # Run TS linter on changed files using the settings configured in the 
@@ -75,7 +69,16 @@ jobs:
         # run linter on changed ts files 
         # tslint -p ./tslint.json [file.ts ...]
         # run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
-        run: $(git rev-parse --show-toplevel)/app/node_modules/.bin/tslint -p ./app/ $TS_FILES 
+        run: |
+          LINT_ISSUES= $($(git rev-parse --show-toplevel)/app/node_modules/.bin/tslint -p ./app/ $TS_FILES)
+          echo "TS_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
+
+
+      - name: Generate Error Annotations
+        run: |
+          text="Missing semicolon"
+          echo TS files with issues: ${{ TS_LINT_ISSUES }} 
+          echo "::warning file=app/src/app/app.component.ts,line=11,col=5::$text"
         
         # run: tslint -p $(git rev-parse --show-toplevel) $TS_FILES 
         # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
