@@ -59,23 +59,7 @@ jobs:
       
 
 
-      # Run TS linter on changed files using the settings configured in the 
-      - name: TSLint Checking
-        # check if added or modified files 
-        # how to store changed TS files in a variable? e.g. # TSchanges = (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) | grep .ts$ | xargs         
-        # if: ${{ always() && (steps.get_file_changes.outputs.files_added || steps.get_file_changes.outputs.files_modified) }}
-        if: env.TS_FILES
-  
-        # run linter on changed ts files 
-        # tslint -p ./tslint.json [file.ts ...]
-        # run: $(git rev-parse --show-toplevel)/node_modules/.bin/tslint -p $(git rev-parse --show-toplevel) ${{ steps.get_file_changes.outputs.files_added }} ${{ steps.get_file_changes.outputs.files_modified }}
-        run: |
-          LINT_ISSUES=app/node_modules/.bin/tslint -p ./app --format json $TS_FILES
-          echo "TS_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
-        
-        # run: tslint -p $(git rev-parse --show-toplevel) $TS_FILES 
-        # How to store project root in a variable? e.g. var ROOT = $(git rev-parse --show-toplevel)
-        
+      
 
 
         
