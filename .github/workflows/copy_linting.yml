@@ -74,14 +74,10 @@ jobs:
           echo Parse output: $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES 
           LINT_ISSUES="$($(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint -f json $SCSS_FILES)"
         
-          JQ_ISSUE=echo $LINT_ISSUES | jq '. [0]'
+          JQ_ISSUE=echo $($LINT_ISSUES | jq '. [0]')
          
           echo jq Issues: $JQ_ISSUE          
           
-          for row in $(echo "${JQ_ISSUE}" | jq -r '[.warnings[]] | @base64'); do
-               text=${row} | base64 --decode | jq -r .text
-               echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"
-          done
           
           
           echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"          
