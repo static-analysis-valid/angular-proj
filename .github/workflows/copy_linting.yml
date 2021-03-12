@@ -73,8 +73,8 @@ jobs:
         run: |
           echo Parse output: $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES 
           LINT_ISSUES="$($(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint -f json $SCSS_FILES)"
-          echo $LINT_ISSUES
-          echo =
+          echo $LINT_ISSUES | jq '.'
+           
          
           #JQ_ISSUE=$LINT_ISSUES | jq '.'
           #echo jq Issues: $JQ_ISSUE          
