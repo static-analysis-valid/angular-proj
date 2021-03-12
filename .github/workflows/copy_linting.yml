@@ -90,7 +90,7 @@ jobs:
           echo Parse output: $(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint $SCSS_FILES 
           LINT_ISSUES="$($(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint -f json $SCSS_FILES)"
         
-          echo '{ "name":"John", "age":31, "city":"New York" }' | jq .
+          echo  $LINT_ISSUES | jq .
           
           echo "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
 
