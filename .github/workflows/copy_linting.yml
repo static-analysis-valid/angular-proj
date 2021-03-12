@@ -79,7 +79,7 @@ jobs:
            
           # https://www.baeldung.com/linux/jq-command-json#1-prettify-json
           # | @base64 - get rid of whitespaces and new lines 
-          JQ_ISSUE="$(echo $LINT_ISSUES | jq -r '. [0] | [.warnings[]] ' )"
+          JQ_ISSUE="$(echo $LINT_ISSUES | jq '. [0] | [.warnings[]] ' )"
           echo jq Issues: $JQ_ISSUE    
           
           # loop warnings 
