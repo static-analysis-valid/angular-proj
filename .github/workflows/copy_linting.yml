@@ -86,7 +86,7 @@ jobs:
           for row in $(echo $JQ_ISSUE | jq -r '.[] | @base64'); do
             
             echo row: ${row}
-            echo rowDecoded: "${row}" | base64 -di 
+            echo rowDecoded: ${row} | base64 --decode
             
             
             # text=${row} | base64 --decode | jq -r .text
