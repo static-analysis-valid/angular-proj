@@ -77,8 +77,8 @@ jobs:
           # jq [options] <jq filter> [file...]
           # echo jq '. [0]' $LINT_ISSUES
            
-         
-          JQ_ISSUE="$(jq '. [0]' $LINT_ISSUES)"
+          # https://www.baeldung.com/linux/jq-command-json#1-prettify-json
+          JQ_ISSUE="$(echo $LINT_ISSUES | jq '. [0]' )"
           echo jq Issues: $JQ_ISSUE          
           
          
