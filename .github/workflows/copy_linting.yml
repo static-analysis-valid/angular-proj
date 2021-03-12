@@ -78,7 +78,7 @@ jobs:
          
           echo Lint Issues: $LINT_ISSUES          
           
-          for row in $(echo "${LINT_ISSUES}" | jq -r '.[.warnings[]] | @base64'); do
+          for row in $(echo "${LINT_ISSUES}" | jq -r '. [0] | [.warnings[]] | @base64'); do
                text=${row} | base64 --decode | jq -r .text
                echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"
           done
