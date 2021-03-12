@@ -76,10 +76,14 @@ jobs:
           echo $LINT_ISSUES | jq '.'
            
          
-          #JQ_ISSUE=$LINT_ISSUES | jq '.'
-          #echo jq Issues: $JQ_ISSUE          
+          JQ_ISSUE="$($LINT_ISSUES | jq '. [0]')"
+          echo jq Issues: $JQ_ISSUE          
           
-          
+          for row in $(echo "${JQ_ISSUE}" | jq -r '[.warnings[]] | @base64'); do
+             text=${row} | base64 --decode | jq -r .text
+             echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"
+          done
+    
           
           echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"          
           echo "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
