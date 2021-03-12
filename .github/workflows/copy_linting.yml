@@ -86,7 +86,7 @@ jobs:
           for row in $(echo $JQ_ISSUE | jq -r '.[] | @base64'); do
             
             # echo row: ${row}
-            echo rowDecoded: "${row}" | base64 --decode | jq .text
+            echo rowDecoded: "${row}" | base64 --decode 
             
             
             # text=${row} | base64 --decode | jq -r .text
@@ -97,7 +97,7 @@ jobs:
          
     
           
-          echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"          
+          # echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"          
           echo "STYLE_LINT_ISSUES=$LINT_ISSUES" >> $GITHUB_ENV
 
 
