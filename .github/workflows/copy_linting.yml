@@ -84,7 +84,7 @@ jobs:
           
           # loop warnings 
           for row in $JQ_ISSUE; do
-            echo row: ${row}
+            echo row: ${row} | base64 --decode
             
             # text=${row} | base64 --decode | jq -r .text
             
