@@ -63,7 +63,7 @@ jobs:
 
 
         
-      # Run TS linter on changed files using the settings configured in the 
+      # Run StyleLinter linter on changed files using the settings configured in the 
       - name: StyleLint Checking
         if: env.SCSS_FILES
         # Usage: stylelint [input] [options]
@@ -75,24 +75,13 @@ jobs:
           LINT_ISSUES="$($(git rev-parse --show-toplevel)/app/node_modules/.bin/stylelint -f json $SCSS_FILES)"
           echo "LINT ISSUES" $LINT_ISSUES
           
-          # jq [options] <jq filter> [file...]
-          # echo first result:  $LINT_ISSUES | jq '. [0]'
-           
-          # https://www.baeldung.com/linux/jq-command-json#1-prettify-json
-          # | @base64 - get rid of whitespaces and new lines 
+          # jq [options] <jq filter> [file...] https://www.baeldung.com/linux/jq-command-json#1-prettify-json
 
-  
-          # loop files 
-          for FILE in $LINT_ISSUES; do 
-            echo "File wiht issues: " $FILE
-          done 
-
-
-          JQ_ISSUE="$(echo $LINT_ISSUES | jq '. [0] | [.warnings[]] ' )"
-          # echo jq Issues: $JQ_ISSUE | jq '.'    
-          
+          JQ_ISSUE="$(echo $LINT_ISSUES | jq '.[] | {source: .source, warnings: .warnings[]}' )"
+          echo jq Issues: $JQ_ISSUE | jq '.'    
 
           # loop warnings 
+          # | @base64 - get rid of whitespaces and new lines 
           for row in $(echo $JQ_ISSUE | jq -r '.[] | @base64'); do
 
             echo row: ${row}
