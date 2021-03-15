@@ -77,8 +77,7 @@ jobs:
           
           # jq [options] <jq filter> [file...] https://www.baeldung.com/linux/jq-command-json#1-prettify-json
 
-          JQ_ISSUE="$( echo $LINT_ISSUES | jq '.[] | {source: .source, warnings: .warnings[]}' )"
-
+          JQ_ISSUE=$( echo $LINT_ISSUES | jq -c -r '.[] | {source: .source, warnings: .warnings[]}' )
           echo "jq Issues:" $JQ_ISSUE 
 
           # loop warnings 
