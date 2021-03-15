@@ -82,7 +82,9 @@ jobs:
           JQ_ISSUE="$(echo $LINT_ISSUES | jq '. [0] | [.warnings[]] ' )"
           # echo jq Issues: $JQ_ISSUE | jq '.'    
           
+          
           # loop warnings 
+          : '
           for row in $(echo $JQ_ISSUE | jq -r '.[] | @base64'); do
             
             echo row: ${row}
@@ -104,6 +106,21 @@ jobs:
             
             # text=${row} | base64 --decode | jq -r .
             
+          done '
+          
+           # loop warnings 
+          for row in $(echo $JQ_ISSUE | jq -r '.[] | @base64'); do
+            
+            echo row: ${row}
+            _jq() {
+              echo "text: " "${row}" | base64 --decode | jq -r ${1}
+              echo "line:" "${row}" | base64 --decode | jq -r .line
+            }
+            echo $(_jq '.text')            
+            
+            # text=${row} | base64 --decode | jq -r .text
+            
+            # echo "::warning file=app/src/app/app.component.scss,line=11,col=5::$text"
           done
           
          
