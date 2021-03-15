@@ -89,8 +89,8 @@ jobs:
 
             echo row: ${row}
 
-            echo ${"${row}" | base64 --decode | jq -r .}
-            line=$("${row}" | base64 --decode | jq -r .line)
+            echo "${row}" | base64 --decode | jq -r .
+            line="${row}" | base64 --decode | jq -r .line
             column="${row}" | base64 --decode | jq -r .column
             text="${row}" | base64 --decode | jq -r .text
             echo "::warning file=app/src/app/app.component.scss,line=11,col=$column::$text"
