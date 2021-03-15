@@ -87,9 +87,9 @@ jobs:
           # loop warnings 
           for row in $(echo $JQ_ISSUE | jq -r '.[] | @base64'); do
 
-            # echo row: ${row}
+            echo row: ${row}
 
-            echo "row:" "${row}" | base64 --decode | jq -r .
+            echo ${"${row}" | base64 --decode | jq -r .}
             line=$("${row}" | base64 --decode | jq -r .line)
             column="${row}" | base64 --decode | jq -r .column
             text="${row}" | base64 --decode | jq -r .text
