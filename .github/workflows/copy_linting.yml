@@ -88,16 +88,21 @@ jobs:
           for row in $(echo $JQ_ISSUE | jq -r '.[] | @base64'); do
 
             echo row: ${row}
+            ROW_DECODED=$( echo "${row}" | base64 --decode | jq -r -c . )
+            echo "ROW DECODED:" $ROW_DECODED
+            
+            LINE=$( echo $ROW_DECODED | jq .line )
+            echo "LINE: " $LINE
+            
+            COLUMN=$( echo $ROW_DECODED | jq .column )
+            echo "COLUMN: " $COLUMN
 
-            echo "${row}" | base64 --decode | jq -r .
-            line="${row}" | base64 --decode | jq -r .line
-            column="${row}" | base64 --decode | jq -r .column
-            text="${row}" | base64 --decode | jq -r .text
+            TEXT=$( echo $ROW_DECODED | jq .text )
+            echo "TEXT:" $TEXT
+
             
-            echo "only line:" "${row}" | base64 --decode | jq -r .line
-            echo "text" $text
             
-            echo "::warning file=app/src/app/app.component.scss,line=11,col=$column::$text"
+            echo "::warning file=app/src/app/app.component.scss,line=$LINE,col=$COLUMN::$TEXT"
 
 
 
