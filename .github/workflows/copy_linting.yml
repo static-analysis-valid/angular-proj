@@ -94,7 +94,8 @@ jobs:
             column="${row}" | base64 --decode | jq -r .column
             text="${row}" | base64 --decode | jq -r .text
             
-            echo 'text $text'
+            echo "only line:" "${row}" | base64 --decode | jq -r .line
+            echo "text" $text
             
             echo "::warning file=app/src/app/app.component.scss,line=11,col=$column::$text"
 
