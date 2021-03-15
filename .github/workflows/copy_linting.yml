@@ -85,13 +85,18 @@ jobs:
           # loop warnings 
           for row in $(echo $JQ_ISSUE | jq -r '.[] | @base64'); do
             
-            # echo row: ${row}
+            echo row: ${row}
           
-            echo "${row}" | base64 --decode | jq -r .
+            rowDecoded="${row}" | base64 --decode | jq -r .
+            echo "rowDecoded: $rowDecoded" 
+            
             line="${row}" | base64 --decode | jq -r .line
             column="${row}" | base64 --decode | jq -r .column
             text="${row}" | base64 --decode | jq -r .text
-            echo "file=app/src/app/app.component.scss,line=11,col=$column::$text"
+            
+            echo "line: $line; column: $column; row: $row"
+           
+           
             echo "::warning file=app/src/app/app.component.scss,line=11,col=$column::$text"
             
 
