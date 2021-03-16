@@ -1,6 +1,5 @@
 {
     "extends": "stylelint-config-sass-guidelines",
-    "defaultSeverity": "warning",
     "rules": {
       "selector-max-compound-selectors": 5,
       "max-nesting-depth": 5,
@@ -9,7 +8,12 @@
       "color-hex-case": null,
       "color-hex-length": null,
       "color-named": null,
-      
+      "function-comma-space-after": [
+        "always",
+        {
+          "severity": "warning"
+        }
+      ],
       "declaration-property-value-disallowed-list": null,
       "indentation": null,
       "number-no-trailing-zeros": null,
