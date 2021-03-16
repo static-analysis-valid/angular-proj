@@ -1,5 +1,6 @@
 {
     "extends": "stylelint-config-sass-guidelines",
+    "defaultSeverity": "warning",
     "rules": {
       "selector-max-compound-selectors": 5,
       "max-nesting-depth": 5,
