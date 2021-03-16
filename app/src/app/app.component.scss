@@ -11,7 +11,7 @@
 
 h1, h2, h3, h4, h5, h6 {
   margin: 8px 0px; // length-zero-no-unit: Disallow units for zero lengths.
-  color: black;
+  color: red;
 }
 
 .empty-block { // block-no-empty: Disallow empty blocks.
