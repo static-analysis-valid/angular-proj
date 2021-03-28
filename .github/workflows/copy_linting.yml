@@ -101,3 +101,7 @@ jobs:
         # Usage: stylelint [input] [options]        
         run: $( git rev-parse --show-toplevel )/app/node_modules/.bin/tslint $TS_FILES 
 
+
+
+      -name: Echo After failed lint 
+      run: echo Lint here 
