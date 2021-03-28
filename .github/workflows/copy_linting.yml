@@ -86,7 +86,7 @@ jobs:
 
 
 
-      Run StyleLinter linter on changed files using the settings configured in the 
+      # Run StyleLinter linter on changed files using the settings configured in the 
       - name: StyleLint Checking
         if: env.SCSS_FILES
         # Usage: stylelint [input] [options]        
