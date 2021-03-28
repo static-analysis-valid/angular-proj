@@ -1,5 +1,5 @@
 
-
+# Use linter from cache 
 name: COPY LINT PR
 
 on:
@@ -24,9 +24,34 @@ jobs:
         with:
           node-version: 12
 
-        
-      - name: Install dependency
-        run: cd app && npm ci     
+
+      # CACHE DEPENDENCIES 
+      - name: Cache node modules
+        id: myCache
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/app/node_modules
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install Dependencies
+        if: steps.myCache.outputs.cache-hit != 'true'
+        run: cd app && npm ci
+
+      - name: Build
+        run: npm build
+
+
+
+
+      # - name: Install dependency
+      #   run: cd app && npm ci     
    
         
       # 3rd party lib get changed files from PR 
@@ -61,18 +86,22 @@ jobs:
       
 
 
-        
+
       # Run StyleLinter linter on changed files using the settings configured in the 
       - name: StyleLint Checking
         if: env.SCSS_FILES
         # Usage: stylelint [input] [options]        
         run: $( git rev-parse --show-toplevel )/app/node_modules/.bin/stylelint $SCSS_FILES 
 
-      
-      
+
       # Run Typescript linter on changed files using the settings configured in the 
       - name: Typescript Checking
         if: env.TS_FILES
         # Usage: stylelint [input] [options]        
         run: $( git rev-parse --show-toplevel )/app/node_modules/.bin/tslint $TS_FILES 
 
+
+
+
+      - name: Echo After failed lint
+        run: echo Lint here 

@@ -8,7 +8,12 @@
       "color-hex-case": null,
       "color-hex-length": null,
       "color-named": null,
-      
+      "function-comma-space-after": [
+        "always",
+        {
+          "severity": "warning"
+        }
+      ],
       "declaration-property-value-disallowed-list": null,
       "indentation": null,
       "number-no-trailing-zeros": null,
