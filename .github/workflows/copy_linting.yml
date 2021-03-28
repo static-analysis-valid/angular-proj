@@ -87,11 +87,11 @@ jobs:
 
 
 
-      # Run StyleLinter linter on changed files using the settings configured in the 
-      - name: StyleLint Checking
-        if: env.SCSS_FILES
-        # Usage: stylelint [input] [options]        
-        run: $( git rev-parse --show-toplevel )/app/node_modules/.bin/stylelint $SCSS_FILES 
+      # # Run StyleLinter linter on changed files using the settings configured in the 
+      # - name: StyleLint Checking
+      #   if: env.SCSS_FILES
+      #   # Usage: stylelint [input] [options]        
+      #   run: $( git rev-parse --show-toplevel )/app/node_modules/.bin/stylelint $SCSS_FILES 
 
 
       # Run Typescript linter on changed files using the settings configured in the 
